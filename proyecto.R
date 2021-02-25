@@ -64,5 +64,5 @@ ggplot(data = Ordenar_Toyota, aes(City, Cantidad_Cartype_Mex, color=Car_type)) +
 
 distinct()
 select ()
-select ()
+distinct ()
 
