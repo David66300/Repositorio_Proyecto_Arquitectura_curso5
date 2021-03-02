@@ -5,10 +5,16 @@ View(Proyecto)
 
 #chile
 filter1_Chile = filter(Proyecto, Country == "Chile")
-filter(Proyecto, Country !="Chile")
-View(filter1)
+
 
 ggplot(data=filter1_Chile, aes(Car_type, Color_vehiculo, color=Car_Model)) + geom_point()
+
+ggplot(data=filter1_Chile, aes(Fecha_venta, Price, color=Car_Model)) + geom_point()
+
+
+plot(as.factor(Proyecto[Proyecto$City == 'Santiago',]$Car_type), 
+            xlab = 'Tipo', ylab = 'cantidad', col = 'blue',
+     main='Tipos de Automoviles vendidos en Santiago (Chile)')
 
 
 #mexico
@@ -57,12 +63,17 @@ data_Agrupada_MX_3 = summarise(Group_CarType_Toyota,
                                Cantidad_Cartype_Mex = n())
 
 Ordenar_Toyota = arrange(data_Agrupada_MX_3, Cantidad_Cartype_Mex)
-View(Ordenar_ciudad_de_Mex)
+View(Ordenar_Toyota)
 
 ggplot(data = Ordenar_Toyota, aes(City, Cantidad_Cartype_Mex, color=Car_type)) + geom_bar(stat="identity", position="dodge")
 
 
-distinct()
-select ()
-distinct ()
+select (Ordenar_Toyota, Car_type, City)
+distinct (Ordenar_Toyota, Cantidad_Cartype_Mex)
+
+mifuncion <- function(Car_type,City, x,y) {
+  ggplot(data = Proyecto, aes(x, y))+
+    geom_bar(stat="identity", position="dodge")}
+
+mifuncion("Toyota","Yucatan",Proyecto$Fecha_venta,Proyecto$Price)
 
